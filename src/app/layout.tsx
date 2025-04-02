@@ -24,13 +24,12 @@ export default async function RootLayout({
     children: React.ReactNode;
 }>) {
     const session = await auth();
-    console.log(session);
     return (
         <html lang="en">
             <body className={`${montserratSans.variable} antialiased scroll-hidden`}>
                 <Providers>
                     <div className="app-container">
-                        <Header session={session} />
+                        <Header session={{ user: session ? session.user : null }} />
                         <ToastContainer position="top-right" autoClose={3000} />
                         {children}
                         <Footer />

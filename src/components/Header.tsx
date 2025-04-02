@@ -10,16 +10,10 @@ import LogOut from "./auth/LogOut";
 import { useModal } from "@/context/ModalContext";
 import Register from "./auth/Register";
 import { Button } from "./ui/button";
-import { Session } from "next-auth";
 
-export type HeaderTypes = {
-    session: Session | null;
-};
-
-const Header = ({ session }: HeaderTypes) => {
-    console.log(session);
-    const { openSignInModal } = useModal();
-
+const Header = ({ session }: { session: { user: { name: string; email: string } } | null }) => {
+    const { isSignInModalOpen, openSignInModal } = useModal();
+    console.log(isSignInModalOpen);
     return (
         <header className="sticky z-50 top-0 h-[83px] w-full px-[90px] py-4 flex justify-between items-center  bg-primary-bg border-b border-b-[#7d7d8040] ">
             <div>
